@@ -8,7 +8,7 @@ Usage:
 from setuptools import setup
 
 APP = ['ScaylaCompanion.py']
-DATA_FILES = ['scayla2.gif']
+DATA_FILES = ['scayla2.gif', 'PythonApplet2.icns']
 OPTIONS = {}
 
 setup(
