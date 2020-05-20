@@ -9,7 +9,7 @@ from setuptools import setup
 
 APP = ['ScaylaCompanion.py']
 DATA_FILES = ['scayla2.gif', 'PythonApplet2.icns']
-OPTIONS = {'includes': ['sip', 'PyQt4._qt']}
+OPTIONS = {}
 
 setup(
     app=APP,
