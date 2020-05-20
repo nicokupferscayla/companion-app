@@ -8,7 +8,7 @@ import websockets
 from SimpleWebSocketServer import SimpleWebSocketServer, WebSocket
 
 from config import ClientEvent, RequestObject, SocketConfig, StatusMessage, StatusColor
-from buildGui import statusText, statusLabel
+from application import application
 from downloadConfig import *
 from fileDownloadThread import FileDownloadThread
 from fileUploadThread import FileUploadThread
@@ -42,13 +42,13 @@ class SimpleEcho(WebSocket):
 
     def handleConnected(self):
         print(self.address, 'Connected')
-        statusText.set(StatusMessage.connected)
-        statusLabel.config(fg=StatusColor.green)
+        application.setStatus(StatusMessage.connected)
+        application.setStatusColor(StatusColor.green)
 
     def handleClose(self):
         print(self.address, 'Disconnected')
-        statusText.set(StatusMessage.disconnected)
-        statusLabel.config(fg=StatusColor.black)
+        application.setStatus(StatusMessage.disconnected)
+        application.setStatusColor(StatusColor.black)
 
 
 class WebSocketThread(threading.Thread):

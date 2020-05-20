@@ -1,5 +1,6 @@
-from buildGui import infoText
+from application import application
+
 
 def logger(text: str):
     print(text)
-    infoText.set(text)
+    application.setInfo(text)
