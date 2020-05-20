@@ -7,7 +7,8 @@ import threading
 import websockets
 from SimpleWebSocketServer import SimpleWebSocketServer, WebSocket
 
-from config import ClientEvent, RequestObject, SocketConfig
+from config import ClientEvent, RequestObject, SocketConfig, StatusMessage, StatusColor
+from buildGui import statusText, statusLabel
 from downloadConfig import *
 from fileDownloadThread import FileDownloadThread
 from fileUploadThread import FileUploadThread
@@ -33,17 +34,15 @@ class SimpleEcho(WebSocket):
             self.file_upload_thread = FileUploadThread(self, request['uploadUrl'], request['fileName'])
             self.file_upload_thread.start()
 
-        # self.sendMessage(self.data)
-
     def handleConnected(self):
         print(self.address, 'Connected')
-        # statusText.set(StatusMessage.connected)
-        # statusLabel.config(fg=StatusColor.green)
+        statusText.set(StatusMessage.connected)
+        statusLabel.config(fg=StatusColor.green)
 
     def handleClose(self):
         print(self.address, 'Disconnected')
-        # statusText.set(StatusMessage.disconnected)
-        # statusLabel.config(fg=StatusColor.black)
+        statusText.set(StatusMessage.disconnected)
+        statusLabel.config(fg=StatusColor.black)
 
 
 class WebSocketThread(threading.Thread):

@@ -38,3 +38,7 @@ class SocketConfig:
     ip = '127.0.0.1'
     port = 31415
 
+class CanvasSize:
+    width = 300
+    height = 300
+
