@@ -9,9 +9,6 @@ from logger import logger
 
 sys.path.append('.')
 
-stopFlag = False
-
-
 if __name__ == '__main__':
     socket = WebSocketThread()
     try:

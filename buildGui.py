@@ -3,10 +3,11 @@ import tkinter as tk
 from config import StatusColor, StatusMessage, CanvasSize
 
 
+root = tk.Tk()
+
 infoText = tk.StringVar()
 infoText.set("")
 
-root = tk.Tk()
 statusText = tk.StringVar()
 statusText.set(StatusMessage().disconnected)
 
@@ -18,7 +19,7 @@ statusLabel = tk.Label(root, textvariable=statusText, fg=StatusColor.blue, font=
 canvas.create_window(CanvasSize.width / 2, 200, window=statusLabel)
 
 
-def buildGui():
+def buildGui() -> None:
     label1 = tk.Label(root, text="Companion App", fg=StatusColor.blue, font=('helvetica', 25, 'bold'))
     canvas.create_window(CanvasSize.width / 2, 90, window=label1)
 

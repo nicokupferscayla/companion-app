@@ -18,20 +18,26 @@ sys.path.append('.')
 
 
 class SimpleEcho(WebSocket):
-    file_download_thread = None
-    file_watch_thread = None
+    file_download_thread: threading.Thread
+    file_upload_thread: threading.Thread
+    upload_url: str
+    file_name: str
 
     def handleMessage(self):
         request: RequestObject = json.loads(self.data)
         if request['eventName'] == ClientEvent.download:
-            file_path = DOWNLOAD_DIR + "/" + request['fileName']
+            self.file_name = request['fileName']
+
+            file_path = DOWNLOAD_DIR + "/" + self.file_name
             # file_path = DOWNLOAD_DIR + "/" + str(random.getrandbits(128)) + "-" + request['fileName']
 
-            self.file_download_thread = FileDownloadThread(self, request['downloadUrl'], file_path, request['fileName'])
+            self.upload_url = request['uploadUrl']
+
+            self.file_download_thread = FileDownloadThread(self, request['downloadUrl'], file_path, self.file_name)
             self.file_download_thread.start()
 
         if request['eventName'] == ClientEvent.upload:
-            self.file_upload_thread = FileUploadThread(self, request['uploadUrl'], request['fileName'])
+            self.file_upload_thread = FileUploadThread(self, self.upload_url, self.file_name)
             self.file_upload_thread.start()
 
     def handleConnected(self):
