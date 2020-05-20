@@ -1,5 +1,6 @@
 import tkinter as tk
-
+import sip
+import PyQt4._qt
 # from PIL import Image, ImageTk
 from config import StatusColor, StatusMessage
 
